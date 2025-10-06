@@ -1,7 +1,13 @@
 # CakePdf plugin
 
-[![Build Status](https://travis-ci.org/FriendsOfCake/CakePdf.svg?branch=master)](https://travis-ci.org/FriendsOfCake/CakePdf)
-[![License](https://poser.pugx.org/FriendsOfCake/CakePdf/license.png)](https://packagist.org/packages/FriendsOfCake/CakePdf)
+[![GitHub License](https://img.shields.io/github/license/pieceofcake2/cakepdf?label=License)](LICENSE)
+[![Packagist Version](https://img.shields.io/packagist/v/pieceofcake2/cakepdf?label=Packagist)](https://packagist.org/packages/pieceofcake2/cakepdf)
+![PHP](https://img.shields.io/packagist/dependency-v/pieceofcake2/cakepdf/php?logo=php&logoColor=%23FFFFFF&label=PHP&labelColor=%23777BB4&color=%23FFFFFF)
+![CakePHP](https://img.shields.io/packagist/dependency-v/pieceofcake2/cakepdf/pieceofcake2/cakephp?logo=cakephp&logoColor=%23FFFFFF&label=CakePHP&labelColor=%23D33C43&color=%23FFFFFF)
+[![CI](https://img.shields.io/github/actions/workflow/status/pieceofcake2/cakepdf/CI.yml?label=CI)](https://github.com/pieceofcake2/cakepdf/actions/workflows/CI.yml)
+[![Codecov](https://img.shields.io/codecov/c/gh/pieceofcake2/cakepdf?label=Coverage)](https://codecov.io/gh/pieceofcake2/cakepdf)
+
+__This is forked for CakePHP2.__
 
 Plugin containing CakePdf lib which will use a PDF engine to convert HTML to PDF.
 
@@ -14,49 +20,24 @@ Current engines:
 
 ## Requirements
 
-* PHP 5.2.8
-* CakePHP 2.1+
+* PHP 8.0+
+* CakePHP 2.10+
 * wkhtmltopdf (optional) See: http://wkhtmltopdf.org/
 * pdftk (optional) See: http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
 
 ## Installation
 
-_[Manual]_
-
-1. Download this: http://github.com/friendsofcake/CakePdf/zipball/master
-2. Unzip that download.
-3. Copy the resulting folder to app/Plugin
-4. Rename the folder you just copied to CakePdf
-
-_[GIT Submodule]_
-
-In your app directory type:
-```bash
-git submodule add git://github.com/friendsofcake/CakePdf.git Plugin/CakePdf
-git submodule init
-git submodule update
-```
-
-_[GIT Clone]_
-
-In your plugin directory type
-```bash
-git clone git://github.com/friendsofcake/CakePdf.git CakePdf
-```
-
-_[Composer]_
-
 In your app directory type
 ```bash
-composer require friendsofcake/cakepdf
+composer require pieceofcake2/cakepdf
 ```
 
 ## Setup
 
 In `app/Config/bootstrap.php` add:
 ```php
-CakePlugin::load('CakePdf', array('bootstrap' => true, 'routes' => true));
+CakePlugin::load('CakePdf', ['bootstrap' => true, 'routes' => true]);
 ```
 
 
@@ -80,41 +61,39 @@ Configuration options:
 
 Example:
 ```php
-<?php
-    Configure::write('CakePdf', array(
-        'engine' => 'CakePdf.WkHtmlToPdf',
-        'options' => array(
-            'print-media-type' => false,
-            'outline' => true,
-            'dpi' => 96
-        ),
-        'margin' => array(
-            'bottom' => 15,
-            'left' => 50,
-            'right' => 30,
-            'top' => 45
-        ),
-        'orientation' => 'landscape',
-        'download' => true
-    ));
-?>
+Configure::write('CakePdf', [
+    'engine' => 'CakePdf.WkHtmlToPdf',
+    'options' => [
+        'print-media-type' => false,
+        'outline' => true,
+        'dpi' => 96,
+    ],
+    'margin' => [
+        'bottom' => 15,
+        'left' => 50,
+        'right' => 30,
+        'top' => 45,
+    ],
+    'orientation' => 'landscape',
+    'download' => true
+]);
+```
 
-<?php
-    class InvoicesController extends AppController {
-        //in your Invoices controller you could set additional configs, or override the global ones:
-        public function view($id = null) {
-            $this->Invoice->id = $id;
-            if (!$this->Invoice->exists()) {
-                throw new NotFoundException(__('Invalid invoice'));
-            }
-            $this->pdfConfig = array(
-                'orientation' => 'portrait',
-                'filename' => 'Invoice_' . $id
-            );
-            $this->set('invoice', $this->Invoice->read(null, $id));
+```php
+class InvoicesController extends AppController {
+    //in your Invoices controller you could set additional configs, or override the global ones:
+    public function view($id = null) {
+        $this->Invoice->id = $id;
+        if (!$this->Invoice->exists()) {
+            throw new NotFoundException(__('Invalid invoice'));
         }
+        $this->pdfConfig = [
+            'orientation' => 'portrait',
+            'filename' => 'Invoice_' . $id,
+        ];
+        $this->set('invoice', $this->Invoice->read(null, $id));
     }
-?>
+}
 ```
 
 
@@ -147,13 +126,12 @@ Optionally you can also write the raw data to file.
 
 Example:
 ```php
-<?php
-    $CakePdf = new CakePdf();
-    $CakePdf->template('newsletter', 'default');
-    //get the pdf string returned
-    $pdf = $CakePdf->output();
-    //or write it to file directly
-    $pdf = $CakePdf->write(APP . 'files' . DS . 'newsletter.pdf');
+$cakePdf = new CakePdf();
+$cakePdf->template('newsletter', 'default');
+//get the pdf string returned
+$pdf = $cakePdf->output();
+//or write it to file directly
+$pdf = $cakePdf->write(APP . 'files' . DS . 'newsletter.pdf');
 ```
 
 
@@ -209,12 +187,12 @@ If you use `HtmlHelper::image()`, `HtmlHelper::script()` or `HtmlHelper::css()` 
 Another solution would be to create a `AppHelper` of which it would force `$options['fullBase'] = true` for PDF requests. e.g:
 ```php
 class AppHelper extends Helper {
-    public function assetUrl($path, $options = array()) {
-    	if (!empty($this->request->params['ext']) && $this->request->params['ext'] === 'pdf') {
-			$options['fullBase'] = true;
-		}
-		return parent::assetUrl($path, $options);
-	}
+    public function assetUrl($path, $options = []) {
+        if (!empty($this->request->params['ext']) && $this->request->params['ext'] === 'pdf') {
+            $options['fullBase'] = true;
+        }
+        return parent::assetUrl($path, $options);
+    }
 }
 ```
 

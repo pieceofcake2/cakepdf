@@ -10,6 +10,6 @@ define('ROOT', VENDORS . 'pieceofcake2' . DS . 'app');
 require_once 'Cake' . DS . 'Test' . DS . 'bootstrap.php';
 
 App::uses('CakePlugin', 'Core');
-CakePlugin::load('Bake', [
+CakePlugin::load('CakePdf', [
     'path' => dirname(__DIR__) . DS,
 ]);

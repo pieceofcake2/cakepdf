@@ -1,20 +1,39 @@
 {
-	"name": "friendsofcake/cakepdf",
-	"type": "cakephp-plugin",
+    "name": "friendsofcake/cakepdf",
     "description": "CakePHP plugin for creating and/or rendering Pdf, several Pdf engines supported.",
-	"homepage": "https://github.com/FriendsOfCake/CakePdf",
-	"license": "MIT",
-	"require": {
-		"php": ">=5.3.0",
-		"composer/installers": "*"
-	},
-	"replace": {
-		"ceeram/cakepdf": "self.version"
-	},
-	"suggest": {
-		"dompdf/dompdf": "When using DomPDF as engine."
-	},
-	"extra": {
-		"installer-name": "CakePdf"
- 	}
+    "type": "cakephp-plugin",
+    "keywords": ["cakephp", "cakephp2", "pdf"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "composer/installers": "*",
+        "pieceofcake2/cakephp": "^2.10"
+    },
+    "require-dev": {
+        "cakephp/cakephp-codesniffer": "^5.0",
+        "dompdf/dompdf": "^3.1",
+        "mpdf/mpdf": "^8.0",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^9.6",
+        "pieceofcake2/app": "^2.1",
+        "pieceofcake2/phpstan-cakephp2": "^0.2.1",
+        "tecnickcom/tcpdf": "^6.10"
+    },
+    "suggest": {
+        "dompdf/dompdf": "When using DomPDF as engine."
+    },
+    "replace": {
+        "ceeram/cakepdf": "^1.0",
+        "friendsofcake/cakepdf": "^1.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "extra": {
+        "installer-name": "CakePdf"
+    }
 }

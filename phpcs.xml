@@ -7,8 +7,10 @@
     <arg name="colors"/>
     <arg name="parallel" value="16"/>
 
-    <file>./Console</file>
+    <file>./Config</file>
+    <file>./Pdf</file>
     <file>./Test</file>
+    <file>./View</file>
 
     <rule ref="CakePHP">
         <!-- ===== Namespace and Class Rules ===== -->
