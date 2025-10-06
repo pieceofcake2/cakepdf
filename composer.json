@@ -1,5 +1,5 @@
 {
-    "name": "friendsofcake/cakepdf",
+    "name": "pieceofcake2/cakepdf",
     "description": "CakePHP plugin for creating and/or rendering Pdf, several Pdf engines supported.",
     "type": "cakephp-plugin",
     "keywords": ["cakephp", "cakephp2", "pdf"],
