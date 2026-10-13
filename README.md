@@ -21,7 +21,7 @@ Current engines:
 ## Requirements
 
 * PHP 8.0+
-* CakePHP 2.10+
+* CakePHP 2.12+
 * wkhtmltopdf (optional) See: http://wkhtmltopdf.org/
 * pdftk (optional) See: http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
