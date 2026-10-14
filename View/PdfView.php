@@ -43,8 +43,7 @@ class PdfView extends View
     /**
      * Constructor
      *
-     * @param Controller $controller
-     * @return void
+     * @param Controller|null $Controller Controller instance
      */
     public function __construct(?Controller $Controller = null)
     {
@@ -59,8 +58,9 @@ class PdfView extends View
         $this->response->type('pdf');
         if ($Controller instanceof CakeErrorController) {
             $this->subDir = null;
+            $this->response->type('html');
 
-            return $this->response->type('html');
+            return;
         }
         if (!$this->pdfConfig) {
             throw new CakeException(__d('cakepdf', 'Controller attribute $pdfConfig is not correct or missing'));

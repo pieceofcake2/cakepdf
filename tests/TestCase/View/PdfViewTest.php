@@ -2,6 +2,9 @@
 
 App::uses('AbstractPdfEngine', 'CakePdf.Pdf/Engine');
 App::uses('Controller', 'Controller');
+App::uses('CakeErrorController', 'Controller');
+App::uses('CakeRequest', 'Network');
+App::uses('CakeResponse', 'Network');
 App::uses('PdfView', 'CakePdf.View');
 
 /**
@@ -80,5 +83,20 @@ class PdfViewTest extends CakeTestCase
 
         $this->assertTrue(strpos($result, '<h2>Rendered with default layout</h2>') !== false);
         $this->assertTrue(strpos($result, 'Post data: This is the post') !== false);
+    }
+
+    /**
+     * test that error pages are rendered as html without the pdf sub directory
+     *
+     * @return void
+     */
+    public function testConstructWithErrorController(): void
+    {
+        $Controller = new CakeErrorController(new CakeRequest(null, false), new CakeResponse());
+        $View = new PdfView($Controller);
+
+        $this->assertEquals('text/html', $View->response->type());
+        $this->assertNull($View->subDir);
+        $this->assertNull($View->renderer());
     }
 }

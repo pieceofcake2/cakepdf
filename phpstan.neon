@@ -1,0 +1,18 @@
+includes:
+    - vendor/pieceofcake2/phpstan-cakephp2/extension.neon
+
+parameters:
+    level: 5
+    phpVersion: 80000
+    paths:
+        - Config
+        - Pdf
+        - View
+    bootstrapFiles:
+        - tests/bootstrap.php
+    ignoreErrors:
+        # Core documents View::$subDir as string, but null is its default and
+        # View::_getViewFileName() checks for it, so error pages reset it to null.
+        -
+            message: '#^Property PdfView::\$subDir \(string\) does not accept null\.$#'
+            path: View/PdfView.php

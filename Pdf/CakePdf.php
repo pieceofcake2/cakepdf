@@ -37,7 +37,7 @@ class CakePdf
     /**
      * Theme for the View
      *
-     * @var array
+     * @var string|null
      */
     protected $_theme = null;
 
@@ -51,14 +51,14 @@ class CakePdf
     /**
      * Instance of PdfEngine class
      *
-     * @var AbstractPdfEngine
+     * @var AbstractPdfEngine|null
      */
     protected $_engineClass = null;
 
     /**
      * Instance of PdfCrypto class
      *
-     * @var AbstractPdfCrypto
+     * @var AbstractPdfCrypto|null
      */
     protected $_cryptoClass = null;
 
@@ -93,28 +93,28 @@ class CakePdf
     /**
      * Bottom margin in mm
      *
-     * @var number
+     * @var string|float|int|null
      */
     protected $_marginBottom = null;
 
     /**
      * Left margin in mm
      *
-     * @var number
+     * @var string|float|int|null
      */
     protected $_marginLeft = null;
 
     /**
      * Right margin in mm
      *
-     * @var number
+     * @var string|float|int|null
      */
     protected $_marginRight = null;
 
     /**
      * Top margin in mm
      *
-     * @var number
+     * @var string|float|int|null
      */
     protected $_marginTop = null;
 
@@ -135,14 +135,14 @@ class CakePdf
     /**
      * User password, used with crypto
      *
-     * @var bool
+     * @var string|null
      */
     protected $_userPassword = null;
 
     /**
      * Owner password, used with crypto
      *
-     * @var bool
+     * @var string|null
      */
     protected $_ownerPassword = null;
 
@@ -266,8 +266,9 @@ class CakePdf
     /**
      * Writes output to file
      *
-     * @param srting $destination Absolute file path to write to
+     * @param string $destination Absolute file path to write to
      * @param bool $create Create file if it does not exist (if true)
+     * @param string|null $html Html content to render. If left empty, the template will be rendered.
      * @return bool
      */
     public function write($destination, $create = true, $html = null)
@@ -282,7 +283,7 @@ class CakePdf
      * Load PdfEngine
      *
      * @param string $name Classname of pdf engine without `Engine` suffix. For example `CakePdf.DomPdf`
-     * @return object PdfEngine
+     * @return AbstractPdfEngine|null PdfEngine, or null when no engine is loaded
      */
     public function engine($name = null)
     {
@@ -308,7 +309,7 @@ class CakePdf
      * Load PdfCrypto
      *
      * @param string $name Classname of crypto engine without `Crypto` suffix. For example `CakePdf.Pdftk`
-     * @return object PdfCrypto
+     * @return AbstractPdfCrypto PdfCrypto
      */
     public function crypto($name = null)
     {
@@ -405,9 +406,9 @@ class CakePdf
      * $left value will be set to left and right
      *
      * @param array|string|null $bottom
-     * @param string|null $left
-     * @param string|null $right
-     * @param string|null $top
+     * @param string|float|int|null $left
+     * @param string|float|int|null $right
+     * @param string|float|int|null $top
      * @return mixed
      */
     public function margin($bottom = null, $left = null, $right = null, $top = null)
@@ -422,7 +423,19 @@ class CakePdf
         }
 
         if (is_array($bottom)) {
-            extract($bottom, EXTR_IF_EXISTS);
+            $margins = $bottom;
+            if (array_key_exists('left', $margins)) {
+                $left = $margins['left'];
+            }
+            if (array_key_exists('right', $margins)) {
+                $right = $margins['right'];
+            }
+            if (array_key_exists('top', $margins)) {
+                $top = $margins['top'];
+            }
+            if (array_key_exists('bottom', $margins)) {
+                $bottom = $margins['bottom'];
+            }
         }
 
         if ($bottom && $left === null && $right === null && $top === null) {
@@ -448,7 +461,7 @@ class CakePdf
     /**
      * Get/Set bottom margin.
      *
-     * @param string|null $margin
+     * @param string|float|int|null $margin
      * @return mixed
      */
     public function marginBottom($margin = null)
@@ -464,7 +477,7 @@ class CakePdf
     /**
      * Get/Set left margin.
      *
-     * @param string|null $margin
+     * @param string|float|int|null $margin
      * @return mixed
      */
     public function marginLeft($margin = null)
@@ -480,7 +493,7 @@ class CakePdf
     /**
      * Get/Set right margin.
      *
-     * @param string|null $margin
+     * @param string|float|int|null $margin
      * @return mixed
      */
     public function marginRight($margin = null)
@@ -496,7 +509,7 @@ class CakePdf
     /**
      * Get/Set bottom margin.
      *
-     * @param string|null $margin
+     * @param string|float|int|null $margin
      * @return mixed
      */
     public function marginTop($margin = null)
@@ -584,7 +597,7 @@ class CakePdf
      * none: allow no permissions
      * array: list of permissions that are allowed
      *
-     * @param array|bool|null $permissions
+     * @param array|string|bool|null $permissions
      * @return mixed
      */
     public function permissions($permissions = null)
