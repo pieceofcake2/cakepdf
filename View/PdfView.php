@@ -22,7 +22,7 @@ class PdfView extends View
     /**
      * The subdirectory.  PDF views are always in pdf.
      *
-     * @var string
+     * @var string|null
      */
     public $subDir = 'pdf';
 
