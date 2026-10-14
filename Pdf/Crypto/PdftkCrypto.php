@@ -15,7 +15,7 @@ class PdftkCrypto extends AbstractPdfCrypto
      * Mapping of the CakePdf permissions to the Pdftk arguments
      *
      * @access protected
-     * @var string
+     * @var array<string, string>
      */
     protected $_permissionsMap = [
         'print' => 'Printing',
@@ -123,8 +123,7 @@ class PdftkCrypto extends AbstractPdfCrypto
     /**
      * Generate the permissions argument
      *
-     * @param array $arguments
-     * @return string list of arguments
+     * @return string|false list of arguments, or false when no permissions are allowed
      */
     protected function _buildPermissionsArgument()
     {
