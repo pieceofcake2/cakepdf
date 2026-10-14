@@ -1,6 +1,6 @@
 {
     "name": "pieceofcake2/cakepdf",
-    "description": "CakePHP plugin for creating and/or rendering Pdf, several Pdf engines supported.",
+    "description": "CakePHP 2 plugin for converting HTML to PDF with Dompdf, mPDF, TCPDF or wkhtmltopdf",
     "type": "cakephp-plugin",
     "keywords": ["cakephp", "cakephp2", "pdf"],
     "license": "MIT",
