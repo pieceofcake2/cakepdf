@@ -14,6 +14,8 @@ class WkHtmlToPdfEngineTest extends CakeTestCase
      */
     public function testGetCommand(): void
     {
+        $this->skipIf(!is_executable('/usr/bin/wkhtmltopdf'), 'wkhtmltopdf binary is not installed at /usr/bin/wkhtmltopdf.');
+
         $class = new ReflectionClass('WkHtmlToPdfEngine');
         $method = $class->getMethod('_getCommand');
         $method->setAccessible(true);

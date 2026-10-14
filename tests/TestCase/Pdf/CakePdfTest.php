@@ -68,7 +68,7 @@ class CakePdfTest extends CakeTestCase
     public function testOutput($config): void
     {
         $pdf = new CakePdf($config);
-        $path = CakePlugin::path('CakePdf') . 'Test' . DS . 'test_app' . DS . 'View' . DS;
+        $path = CakePlugin::path('CakePdf') . 'tests' . DS . 'test_app' . DS . 'View' . DS;
         App::build(['View' => $path]);
         $pdf->viewVars(['data' => 'testing']);
         $pdf->template('testing', 'pdf');
@@ -91,7 +91,7 @@ class CakePdfTest extends CakeTestCase
     public function testPluginOutput($config): void
     {
         $pdf = new CakePdf($config);
-        $path = CakePlugin::path('CakePdf') . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS;
+        $path = CakePlugin::path('CakePdf') . 'tests' . DS . 'test_app' . DS . 'Plugin' . DS;
         App::build(['Plugin' => $path]);
         CakePlugin::load('MyPlugin');
         $pdf->viewVars(['data' => 'testing']);

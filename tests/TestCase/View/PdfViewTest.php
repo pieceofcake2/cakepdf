@@ -43,7 +43,7 @@ class PdfViewTest extends CakeTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $path = CakePlugin::path('CakePdf') . 'Test' . DS . 'test_app' . DS . 'View' . DS;
+        $path = CakePlugin::path('CakePdf') . 'tests' . DS . 'test_app' . DS . 'View' . DS;
         App::build(['View' => $path]);
 
         $Controller = new PdfTestPostsController();
