@@ -13,6 +13,13 @@ actions as PDF with `PdfView` and creates PDF files for email attachments or fil
 This is a fork of [FriendsOfCake/CakePdf](https://github.com/FriendsOfCake/CakePdf) 1.x for
 [pieceofcake2/cakephp](https://github.com/pieceofcake2/cakephp).
 
+## Documentation
+
+- Website: https://pieceofcake2.github.io/cakepdf/
+- Markdown: [docs/README.md](docs/README.md) (for AI tools and offline reading)
+
+The Markdown documentation is also included in the Composer package, in the plugin's directory: `plugins/CakePdf/docs/README.md` (the location depends on your `installer-paths`). Install the package with `--dev` if you only need it for development.
+
 ## Requirements
 
 * PHP 8.0+
@@ -29,10 +36,6 @@ you choose one.
 ```bash
 composer require pieceofcake2/cakepdf
 ```
-
-## Documentation
-
-See the [documentation](https://pieceofcake2.github.io/cakepdf/).
 
 ## Contributing
 
