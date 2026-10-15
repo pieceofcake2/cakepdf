@@ -20,6 +20,10 @@ This is a fork of [FriendsOfCake/CakePdf](https://github.com/FriendsOfCake/CakeP
 * One of dompdf/dompdf, mpdf/mpdf, tecnickcom/tcpdf or the [wkhtmltopdf](https://wkhtmltopdf.org/) binary
 * [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) (optional, for encryption)
 
+Each engine has its own license (LGPL or GPL) and maintenance status. See
+[Engines and Licenses](https://pieceofcake2.github.io/cakepdf/#engines-and-licenses) before
+you choose one.
+
 ## Installation
 
 ```
