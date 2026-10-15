@@ -67,14 +67,13 @@ CakePlugin::load('CakePdf', ['bootstrap' => true, 'routes' => true]);
 
 ## エンジンとライセンス
 
-CakePdf 自体は MIT ライセンスで公開されていますが、各エンジンはそれぞれ独自のライセンスを持つ別の
-プロジェクトです。エンジンのライブラリ (またはバイナリ) は自分でインストールするので、CakePdf の
-ライセンスに加えて、そのライセンスもアプリケーションに適用されます。
+CakePdf 自体は MIT ライセンスで公開されています。各エンジンは別のプロジェクトで、それぞれのライセンスは
+次の表のとおりです。インストールするエンジンのライセンスを確認してください。
 
 | エンジン | ライブラリ | Composer パッケージ | ライセンス | 種類 | 注意点 |
 | --- | --- | --- | --- | --- | --- |
 | `CakePdf.DomPdf` | [Dompdf](https://dompdf.github.io/) ([GitHub](https://github.com/dompdf/dompdf)) | [`dompdf/dompdf`](https://packagist.org/packages/dompdf/dompdf) `^3.1` | [LGPL-2.1](https://github.com/dompdf/dompdf/blob/master/LICENSE.LGPL) | PHP ライブラリ | PHP `^7.1 \|\| ^8.0`。主に CSS 2.1 と一部の CSS3 プロパティに対応します。flexbox や grid には対応せず、表の 1 行は 1 ページに収まる必要があります。DejaVu フォントを同梱しています。 |
-| `CakePdf.Mpdf` | [mPDF](https://mpdf.github.io/) ([GitHub](https://github.com/mpdf/mpdf)) | [`mpdf/mpdf`](https://packagist.org/packages/mpdf/mpdf) `^8.0` | [GPL-2.0-only](https://github.com/mpdf/mpdf/blob/development/LICENSE.txt) | PHP ライブラリ | PHP 5.6 から 8.5 (8.5 は mPDF 8.2.6 から)。強いコピーレフトです (下記参照)。Unicode と CJK のフォントを同梱しています。 |
+| `CakePdf.Mpdf` | [mPDF](https://mpdf.github.io/) ([GitHub](https://github.com/mpdf/mpdf)) | [`mpdf/mpdf`](https://packagist.org/packages/mpdf/mpdf) `^8.0` | [GPL-2.0-only](https://github.com/mpdf/mpdf/blob/development/LICENSE.txt) | PHP ライブラリ | PHP 5.6 から 8.5 (8.5 は mPDF 8.2.6 から)。Unicode と CJK のフォントを同梱しています。 |
 | `CakePdf.Tcpdf` | [TCPDF](https://tcpdf.org/) ([GitHub](https://github.com/tecnickcom/TCPDF)) | [`tecnickcom/tcpdf`](https://packagist.org/packages/tecnickcom/tcpdf) `^6.10` | [LGPL-3.0-or-later](https://github.com/tecnickcom/TCPDF/blob/main/LICENSE.TXT) | PHP ライブラリ | TCPDF 6.x には PHP 7.1 以上が必要です。アップストリームは TCPDF を非推奨でメンテナンスのみとしており、開発は [tc-lib-pdf](https://github.com/tecnickcom/tc-lib-pdf) に移っています。TCPDF 7.x (PHP 8.2 以上) は tc-lib-pdf の上の互換レイヤーで、CakePdf ではテストしていません。`writeHTML()` が対応する HTML タグは限られており、整形式の HTML が必要です。 |
 | `CakePdf.WkHtmlToPdf` | [wkhtmltopdf](https://wkhtmltopdf.org/) ([GitHub](https://github.com/wkhtmltopdf/wkhtmltopdf)) | なし (システムのバイナリ) | [LGPL-3.0-or-later](https://github.com/wkhtmltopdf/wkhtmltopdf/blob/master/LICENSE) | 外部バイナリ | **メンテナンスされていません**。GitHub リポジトリはアーカイブされており、最後のリリースは 0.12.6 (2020 年 6 月) です。古い Qt WebKit でレンダリングします。[プロジェクトの状況](https://wkhtmltopdf.org/status.html) をご覧ください。アップストリームは、信頼できない HTML に使わないよう警告しています。ホストにインストールされたフォントを使います。 |
 
@@ -85,35 +84,6 @@ CakePdf は、インストールするエンジンのバージョンを制限し
 のバイナリも外部プログラムです。PDFtk Server は [GPL バージョン 2](https://www.pdflabs.com/docs/pdftk-license/)
 または商用の再頒布ライセンスで提供されており、移植版の [pdftk-java](https://gitlab.com/pdftk-java/pdftk) は
 GPL バージョン 2 以降でライセンスされています。
-
-<a id="what-the-license-types-mean"></a>
-
-### ライセンスの種類の意味
-
-以下は短く一般的な要約で、法的な助言ではありません。各プロジェクトのライセンスファイルが正式なものです。
-ライセンスファイルを読み、アプリケーションにどう適用されるかわからない場合は弁護士に相談してください。
-
-* **寛容なライセンス** (MIT、BSD、Apache-2.0) は、CakePdf 自身の MIT ライセンスのように、
-  オープンソースのアプリケーションでもプロプライエタリなアプリケーションでも使えます。主に必要なのは、
-  コードを頒布するときに著作権表示とライセンス表示を残すことです。上のエンジンには、寛容なライセンスの
-  ものはありません。
-* **弱いコピーレフト** (LGPL: Dompdf、TCPDF、wkhtmltopdf) では、どのライセンスのコードからでも
-  ライブラリを使えます。ライブラリを頒布するときは、そのライセンスとソースを提供し、ライブラリ自体に
-  加えた変更は LGPL のままにし、ユーザーがライブラリを別のバージョンに置き換えられるようにする必要が
-  あります。Composer でインストールした PHP ライブラリは、`vendor/` の下にある、置き換え可能な別の
-  コンポーネントのままです。また、wkhtmltopdf のような外部バイナリは別のプログラムです。
-* **強いコピーレフト** (GPL: mPDF、pdftk)。mPDF の `composer.json` は `GPL-2.0-only` と宣言しており、
-  リポジトリには GPL バージョン 2 の本文が含まれています (mPDF マニュアルのライセンスのページには
-  "version 2 or later" とあるので、インストールするバージョンのファイルを確認してください)。mPDF を
-  含むアプリケーションを、たとえば顧客に納品したりダウンロード可能な製品として提供したりして頒布する
-  場合、GPL によって、アプリケーションを GPL と互換性のある条件でソースコードと一緒に頒布することが
-  求められる場合があります。pdftk のような別のプログラムを実行することは、一般に、ライブラリを
-  コードに含めることとは異なる扱いになります。
-* **SaaS での利用と頒布。** ここに挙げた GPL と LGPL のバージョンの義務は、ソフトウェアを頒布する
-  (GPLv3/LGPLv3 の用語では「運搬する」) ことで生じます。自分のサーバーで実行して、ネットワーク越しに
-  ユーザーにサービスを提供するだけなら、一般に頒布にはあたりません。ネットワーク越しの利用に義務を
-  加える AGPL を使っているエンジンはありません。アプリケーションを顧客に渡して、顧客自身のサーバーで
-  実行してもらう場合は頒布にあたります。
 
 <a id="japanese-text-cjk"></a>
 
