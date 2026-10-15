@@ -26,7 +26,7 @@ you choose one.
 
 ## Installation
 
-```
+```bash
 composer require pieceofcake2/cakepdf
 ```
 
