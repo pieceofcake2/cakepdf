@@ -296,7 +296,7 @@ class AppHelper extends Helper
 ## 謝辞
 
 Kim Biesbjerg と Jelle Henkens の貢献に深く感謝します。
-ここに名前を載せたいですか？改善やほかの PDF エンジンのためのプルリクエストを作成してください。
+ここに名前を載せたい方は、改善やほかの PDF エンジンのためのプルリクエストを作成してください。
 
 <a id="origin"></a>
 
