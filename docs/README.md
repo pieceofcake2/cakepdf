@@ -305,3 +305,12 @@ class AppHelper extends Helper
 
 Many thanks to Kim Biesbjerg and Jelle Henkens for their contributions.
 Want your name here as well? Create a pull request for improvements or other PDF engines.
+
+## Origin
+
+This package is a maintained fork of
+[FriendsOfCake/CakePdf](https://github.com/FriendsOfCake/CakePdf) (`friendsofcake/cakepdf` on
+Packagist, last upstream version 1.0.3), originally by Ceeram. It is maintained for CakePHP 2 on
+modern PHP by [pieceofcake2](https://github.com/pieceofcake2). Changes from the original are listed
+in the
+[commit history since the fork](https://github.com/pieceofcake2/cakepdf/compare/82750dd...1.x).
