@@ -280,7 +280,14 @@ PDF 用のビューテンプレートでは、静的アセットに絶対 URL �
 ```php
 class AppHelper extends Helper
 {
-    public function assetUrl($path, $options = []): string
+    /**
+     * Generate full asset URLs when rendering a PDF.
+     *
+     * @param array|string $path Path string or URL array
+     * @param array $options Options array
+     * @return string
+     */
+    public function assetUrl($path, $options = [])
     {
         if (!empty($this->request->params['ext']) && $this->request->params['ext'] === 'pdf') {
             $options['fullBase'] = true;
